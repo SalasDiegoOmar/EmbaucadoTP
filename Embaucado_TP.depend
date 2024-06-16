@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1718282789 source:c:\users\laservd\desktop\embaucado\embaucado_tp\main.cpp
+	<iostream>
+	"funciones.h"
+	<cstdlib>
+	<ctime>
+	<string>
+	"rlutil.h"
+
+1718282789 c:\users\laservd\desktop\embaucado\embaucado_tp\funciones.h
+	<string>
+
+1718283285 source:c:\users\laservd\desktop\embaucado\embaucado_tp\funciones.cpp
+	"funciones.h"
+	<cstdlib>
+	<ctime>
+	<iostream>
+	"rlutil.h"
+
+1718270328 c:\users\laservd\desktop\embaucado\embaucado_tp\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+

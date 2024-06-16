@@ -11,3 +11,9 @@ void Repartir_Cartas(string BarajaValor[], string BarajaPalo[], string MazoValor
 string CartaEmbaucadora(string VecNaipePalo[], int CANT_PALOS);
 
 void Mostrar_Cartas(string MazoValor_J[], string MazoPalo_J[], int VALOR);
+
+void NombreJugadores(string &Nombre_Jugador_1, string &Nombre_Jugador_2);
+
+int Menu();
+
+
