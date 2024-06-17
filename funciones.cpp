@@ -4,7 +4,9 @@
 #include <iostream>
 #include "rlutil.h"
 
+
 using namespace std;
+
 
 int Menu()
 {
@@ -12,38 +14,40 @@ int Menu()
     do
     {
         rlutil::cls();
-        cout << "EMBAUCADO" << endl;
-        cout << "---------------------" << endl;
-        cout << "1 - JUGAR" << endl;
-        cout << "2 - ESTADÍSTICAS" << endl;
-        cout << "3 - CRÉDITOS" << endl;
-        cout << "---------------------" << endl;
-        cout << "0 - SALIR" << endl;
         cout << endl;
+        cout << "     EMBAUCADO" << endl;
+        cout << "---------------------" << endl;
+        cout << " 1 - JUGAR" << endl;
+        cout << " 2 - ESTADÍSTICAS" << endl;
+        cout << " 3 - CRÉDITOS" << endl;
+        cout << "---------------------" << endl;
+        cout << " 0 - SALIR" << endl;
+        cout << endl;
+        rlutil::hidecursor();
         cin >> Opcion;
+        rlutil::showcursor();
         cout << endl;
 
         switch(Opcion)
         {
         case 1:
-            return 1;
+            return Opcion;
             break;
+
         case 2:
-            return 2;
+            return Opcion;
             break;
+
         case 3:
-            return 3;
+            return Opcion;
             break;
+
         case 0:
             exit(0);
             break;
-        default:
-            break;
-
         }
     }
     while(Opcion != 0);
-
 }
 
 
@@ -177,15 +181,15 @@ void Barajar_Cartas(string VecNaipeValor[], string VecNaipePalo[], string Baraja
 }
 
 
-void Repartir_Cartas(string BarajaValor[], string BarajaPalo[], string MazoValor_J1[], string MazoPalo_J1[], string MazoValor_J2[], string MazoPalo_J2[])
+void Repartir_Cartas(string BarajaValor[], string BarajaPalo[], string MazoValor_J1[], string MazoPalo_J1[], string MazoValor_J2[], string MazoPalo_J2[], int VALOR)
 {
 
-    for(int x = 0; x < 5; x++)
+    for(int x = 0; x < VALOR; x++)
     {
         MazoValor_J1[x] = BarajaValor[x];
         MazoPalo_J1[x] = BarajaPalo[x];
-        MazoValor_J2[x] = BarajaValor[x + 5];
-        MazoPalo_J2[x] = BarajaPalo[x + 5];
+        MazoValor_J2[x] = BarajaValor[x + VALOR];
+        MazoPalo_J2[x] = BarajaPalo[x + VALOR];
     }
 
 
@@ -200,3 +204,73 @@ void Mostrar_Cartas(string MazoValor_J[], string MazoPalo_J[], int VALOR)
 }
 
 
+
+void Creditos()
+{
+    rlutil::cls();
+    cout << endl;
+    cout << "Tecnicatura Universitaria en Programación" << endl;
+    cout << endl;
+    cout << "\t\tGrupo 9" << endl;
+    cout << endl;
+    cout << "30490 Natalia Patricia Mucci" << endl;
+    cout << endl;
+    cout << "30591 Diego Omar Salas" << endl;
+    cout << endl;
+    cout << "Juego inventado por Angel Simón." << endl;
+    cout << "Inspirado levemente en un juego Push your luck de Bob Lancaster." << endl;
+    cout << endl;
+    cout << "Presione cualquier tecla para continuar....";
+    rlutil::anykey();
+
+}
+
+
+void Jugar()
+{
+
+setlocale(LC_CTYPE, "spanish");
+    const int CARTAS = 10, VALOR = 5,PALO = 4, RONDAS = 3;
+    string VecNaipeValor[VALOR] = {"10", "J", "Q", "K", "A"};
+    string VecNaipePalo[PALO] = {"Corazones", "Diamantes", "Picas", "Treboles"};
+    string BarajaValor[CARTAS];
+    string BarajaPalo[CARTAS];
+    string MazoValor_J1 [VALOR], MazoPalo_J1[VALOR];
+    string MazoValor_J2[VALOR], MazoPalo_J2[VALOR];
+    string Embaucado;
+    string Nombre_Jugador_1, Nombre_Jugador_2;
+    int Puntos_Maximos_J1 = 0, Puntos_Maximos_J2 = 0, Puntos_Ronda1_J1 = 0, Puntos_Ronda1_J2 = 0, Num_Ronda;
+
+    NombreJugadores(Nombre_Jugador_1, Nombre_Jugador_2);
+
+    for(int x = 0; x < RONDAS; x ++)
+    {
+
+        Barajar_Cartas(VecNaipeValor,VecNaipePalo,BarajaValor,BarajaPalo,VALOR,PALO,CARTAS);
+        Repartir_Cartas(BarajaValor,BarajaPalo,MazoValor_J1,MazoPalo_J1,MazoValor_J2,MazoPalo_J2,VALOR);
+        Embaucado = CartaEmbaucadora(VecNaipePalo, PALO);
+
+        Num_Ronda = x + 1;
+
+        cout << "EMBAUCADO" << endl;
+        cout << "------------------------------------------------------------------------" << endl;
+        cout << "RONDA #" << Num_Ronda << endl;
+        cout << Nombre_Jugador_1 << " Vs " << Nombre_Jugador_2 << endl;
+        cout << endl;
+        cout << endl;
+        cout << Nombre_Jugador_1 << "(" << Puntos_Maximos_J1 << ")" << endl;
+        cout << endl;
+        Mostrar_Cartas(MazoValor_J1,MazoPalo_J1,VALOR);
+        rlutil::anykey();
+        cout << endl;
+        cout << Nombre_Jugador_2 << "(" << Puntos_Maximos_J2 << ")" << endl;
+        cout << endl;
+        Mostrar_Cartas(MazoValor_J2,MazoPalo_J2,VALOR);
+        cout << endl;
+        cout << "Embaucadora: " << Embaucado << endl;
+        rlutil::anykey();
+        rlutil::cls();
+
+    }
+
+}
