@@ -11,7 +11,9 @@ using namespace std;
 int Menu()
 {
     int Opcion;
-    do
+    bool Menu_Opcion = false;
+
+    while(Menu_Opcion == false)
     {
         rlutil::cls();
         cout << endl;
@@ -24,30 +26,60 @@ int Menu()
         cout << " 0 - SALIR" << endl;
         cout << endl;
         rlutil::hidecursor();
-        cin >> Opcion;
-        rlutil::showcursor();
-        cout << endl;
+
+        while(!(cin >> Opcion))
+        {
+            rlutil::cls();
+            cout << endl;
+            cout << "ERROR: Ingreso invalido" << endl;
+            cout << endl;
+            rlutil::anykey();
+            rlutil::cls();
+            cout << endl;
+            cout << "     EMBAUCADO" << endl;
+            cout << "---------------------" << endl;
+            cout << " 1 - JUGAR" << endl;
+            cout << " 2 - ESTADÍSTICAS" << endl;
+            cout << " 3 - CRÉDITOS" << endl;
+            cout << "---------------------" << endl;
+            cout << " 0 - SALIR" << endl;
+            cout << endl;
+
+            cin.clear();
+            cin.ignore(100,'\n');
+        }
 
         switch(Opcion)
         {
         case 1:
+            Menu_Opcion = true;
             return Opcion;
+            rlutil::showcursor();
             break;
 
         case 2:
+            Menu_Opcion = true;
             return Opcion;
+            rlutil::showcursor();
             break;
 
         case 3:
+            Menu_Opcion = true;
             return Opcion;
+            rlutil::showcursor();
             break;
 
         case 0:
+            Menu_Opcion = true;
             exit(0);
+            rlutil::showcursor();
+            break;
+
+        default:
             break;
         }
     }
-    while(Opcion != 0);
+return 0;
 }
 
 
@@ -58,27 +90,27 @@ int Menu()
 
 void NombreJugadores(string &Nombre_Jugador_1, string &Nombre_Jugador_2)
 {
-char Opcion;
+    char Opcion;
 
     do
     {
-    rlutil::cls();
-    cout << "EMBAUCADO" << endl;
-    cout << "-------------------------------------------------" << endl;
-    cout << "Antes de comenzar deben registrar sus nombre: " << endl;
-    cout << endl;
-    cout << "¿Nombre del jugador 1? ";
-    cin >> Nombre_Jugador_1;
-    cout << "¿Nombre del jugador 2? ";
-    cin >> Nombre_Jugador_2;
-    cout << endl;
-    cout << "¿Confirmar Nombres? (S/N) " << endl;
-    cout << endl << "-------------------------------------------------" << endl;
-    rlutil::locate(27,8);
-    cin >> Opcion;
+        rlutil::cls();
+        cout << "EMBAUCADO" << endl;
+        cout << "-------------------------------------------------" << endl;
+        cout << "Antes de comenzar deben registrar sus nombre: " << endl;
+        cout << endl;
+        cout << "¿Nombre del jugador 1? ";
+        cin >> Nombre_Jugador_1;
+        cout << "¿Nombre del jugador 2? ";
+        cin >> Nombre_Jugador_2;
+        cout << endl;
+        cout << "¿Confirmar Nombres? (S/N) " << endl;
+        cout << endl << "-------------------------------------------------" << endl;
+        rlutil::locate(27,8);
+        cin >> Opcion;
 
-    Opcion = toupper(Opcion);
-    switch (Opcion)
+        Opcion = toupper(Opcion);
+        switch (Opcion)
         {
         case 'S':
             rlutil::cls();
@@ -114,7 +146,7 @@ char Opcion;
                 rlutil::cls();
                 break;
             }
-    }
+        }
 
     }
     while(Opcion != 'S');
@@ -229,7 +261,7 @@ void Creditos()
 void Jugar()
 {
 
-setlocale(LC_CTYPE, "spanish");
+    setlocale(LC_CTYPE, "spanish");
     const int CARTAS = 10, VALOR = 5,PALO = 4, RONDAS = 3;
     string VecNaipeValor[VALOR] = {"10", "J", "Q", "K", "A"};
     string VecNaipePalo[PALO] = {"Corazones", "Diamantes", "Picas", "Treboles"};
