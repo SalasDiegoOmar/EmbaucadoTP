@@ -11,9 +11,8 @@ using namespace std;
 int Menu()
 {
     int Opcion;
-    bool Menu_Opcion = false;
 
-    while(Menu_Opcion == false)
+    do
     {
         rlutil::cls();
         cout << endl;
@@ -52,34 +51,31 @@ int Menu()
         switch(Opcion)
         {
         case 1:
-            Menu_Opcion = true;
             return Opcion;
-            rlutil::showcursor();
+
             break;
 
         case 2:
-            Menu_Opcion = true;
             return Opcion;
-            rlutil::showcursor();
+
             break;
 
         case 3:
-            Menu_Opcion = true;
             return Opcion;
-            rlutil::showcursor();
+
             break;
 
         case 0:
-            Menu_Opcion = true;
             exit(0);
-            rlutil::showcursor();
+
             break;
 
         default:
             break;
         }
     }
-return 0;
+    while(Opcion != 0);
+
 }
 
 
@@ -90,66 +86,61 @@ return 0;
 
 void NombreJugadores(string &Nombre_Jugador_1, string &Nombre_Jugador_2)
 {
-    char Opcion;
+    char confirmacion;
 
     do
     {
         rlutil::cls();
+        rlutil::showcursor();
+        cout << endl;
         cout << "EMBAUCADO" << endl;
         cout << "-------------------------------------------------" << endl;
         cout << "Antes de comenzar deben registrar sus nombre: " << endl;
         cout << endl;
         cout << "¿Nombre del jugador 1? ";
-        cin >> Nombre_Jugador_1;
+        cin.ignore();
+        getline(cin,Nombre_Jugador_1);
+        cout << endl;
         cout << "¿Nombre del jugador 2? ";
-        cin >> Nombre_Jugador_2;
+        getline(cin,Nombre_Jugador_2);
         cout << endl;
         cout << "¿Confirmar Nombres? (S/N) " << endl;
-        cout << endl << "-------------------------------------------------" << endl;
-        rlutil::locate(27,8);
-        cin >> Opcion;
+        cout << endl;
+        cout << endl << endl << "-------------------------------------------------" << endl;
+        rlutil::locate(27,10);
+        cin >> confirmacion;
+        confirmacion = toupper(confirmacion);
+        cin.ignore(100,'\n');
 
-        Opcion = toupper(Opcion);
-        switch (Opcion)
+
+        while(confirmacion != 'S' && confirmacion != 'N') //para contemplar mayusculas y minusculas
         {
-        case 'S':
-            rlutil::cls();
             cout << endl;
-            break;
-        case 'N':
-            cout << "Vuelva a registrar nuevamente los nombres" << endl;
+            cout << "ERROR solo se admite 'S' o 'N'" << endl;
+            cout << endl;
             rlutil::anykey();
             rlutil::cls();
-            break;
-        default:
-            cout << "Opcion incorrecta." << endl;
+            cout << "\nConfirmar nombres (S/N): ";
+            cin >> confirmacion;
+            confirmacion = toupper(confirmacion);
+            cin.ignore(100,'\n');
+        }
+        if(confirmacion == 'N' || confirmacion == 'n')
+        {
+            cout << "Ingrese los nombres nuevamente\n";
             rlutil::anykey();
             rlutil::cls();
-            cout << "¿Confirmar Nombres? (S/N) ";
-            cin >> Opcion;
-            Opcion = toupper(Opcion);
-            switch (Opcion)
-            {
-            case 'S':
-                rlutil::cls();
-                cout << endl;
-                break;
-            case 'N':
-                cout << "Vuelva a registrar nuevamente los nombres" << endl;
-                rlutil::anykey();
-                rlutil::cls();
-                break;
-            default:
-                cout << "Opcion incorrecta." << endl;
-                cout << "Vuelva a registrar nuevamente los nombres" << endl;
-                rlutil::anykey();
-                rlutil::cls();
-                break;
-            }
+        }
+        else
+        {
+            cout << "\n------------------------------------------------------------------------" << endl;
         }
 
+        rlutil::cls();
+
     }
-    while(Opcion != 'S');
+    while(confirmacion != 'S'); //para contemplar mayusculas y minusculas
+
 }
 
 
