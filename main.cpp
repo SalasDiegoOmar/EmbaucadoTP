@@ -9,6 +9,7 @@ using namespace std;
 
 int main()
 {
+    system ("mode con cols=100 lines=40");
     setlocale(LC_CTYPE, "spanish");
     const int CARTAS = 10, VALOR = 5,PALO = 4, RONDA = 3;
     int VecRondaJuego[RONDA] = {1, 2, 3};

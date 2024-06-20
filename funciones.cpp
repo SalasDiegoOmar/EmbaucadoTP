@@ -335,7 +335,7 @@ void Jugar()
             confirmacion = toupper(confirmacion);
             cin.ignore(100,'\n');
 
-            while(confirmacion != 'S' && confirmacion != 'N')
+            while(confirmacion != 'S' && confirmacion != 'N') ///PREGUNTA DE CAMBIO DE CARTA EMBAUCADO JUGADOR 1
             {
                 cout << endl;
                 cout << "ERROR solo se admite 'S' o 'N'" << endl;
@@ -374,7 +374,7 @@ void Jugar()
                 cin >> confirmacion;
                 confirmacion = toupper(confirmacion);
                 cin.ignore(100,'\n');
-                while(confirmacion != 'S' && confirmacion != 'N')
+                while(confirmacion != 'S' && confirmacion != 'N')  ///SI NO ACEPTA EL JUGADOR 1, PRGUNTA DE CAMBIO DE CARTA EMBAUCADO AL JUGADOR 2
                 {
                     cout << endl;
                     cout << "ERROR solo se admite 'S' o 'N'" << endl;
@@ -411,6 +411,109 @@ void Jugar()
             cout << " = " << Puntos_Ronda_J2[x] << " puntos" <<endl;
             rlutil::anykey();
             rlutil::cls();
+
+
+
+        }else
+
+            {
+            cout << endl;
+            cout << " EMBAUCADO" << endl;
+            cout << " ----------------------------------------------------" << endl;
+            cout << " RONDA #" << Num_Ronda << endl;
+            //cout << endl;
+            cout << " " << Nombre_Jugador_1 << " Vs " << Nombre_Jugador_2 << endl;
+            cout << endl;
+            cout << "+---------------------------+" << endl;
+            cout << "\t" << Nombre_Jugador_2 << "(" << Puntos_Maximos_J2 << ")" << endl;
+            cout << endl;
+            Mostrar_Cartas(MazoValor_J2,MazoPalo_J2,VALOR);
+            cout << endl;
+            cout << "    Embaucadora: " << Embaucado << endl;
+            rlutil::anykey();
+            cout << endl;
+            cout << Nombre_Jugador_2 << " ¿Desea modificar la carta embaucadora actual? (" << Embaucado << ")?" << "(S/N):";
+            cin >> confirmacion;
+            confirmacion = toupper(confirmacion);
+            cin.ignore(100,'\n');
+
+            while(confirmacion != 'S' && confirmacion != 'N') ///PREGUNTA DE CAMBIO DE CARTA EMBAUCADO JUGADOR 1
+            {
+                cout << endl;
+                cout << "ERROR solo se admite 'S' o 'N'" << endl;
+                cout << endl;
+                rlutil::anykey();
+                //rlutil::cls();
+                cout << Nombre_Jugador_2 << " ¿Desea modificar la carta embaucadora actual? (" << Embaucado << ")?" << "(S/N):";
+                cin >> confirmacion;
+                confirmacion = toupper(confirmacion);
+                cin.ignore(100,'\n');
+            }
+            if(confirmacion == 'S')
+            {
+                cout << endl;
+                Embaucado = CartaEmbaucadora(VecNaipePalo, PALO);
+                cout << "Se retan 20 punto por el uso del cambio de carta embaucadora" << endl;
+                Puntos_Ronda_J2[x] -= 20;
+                cout << endl;
+                cout << "Nueva carta Embaucadora: " << Embaucado << endl;
+                rlutil::anykey();
+                cout << endl;
+                cout << "\t" << Nombre_Jugador_1 << "(" << Puntos_Maximos_J1 << ")" << endl;
+                cout << endl;
+                Mostrar_Cartas(MazoValor_J1,MazoPalo_J1,VALOR);
+                rlutil::anykey();
+                cout << endl;
+            }
+            else
+            {
+                cout << endl;
+                cout << "\t" << Nombre_Jugador_1 << "(" << Puntos_Maximos_J1 << ")" << endl;
+                cout << endl;
+                Mostrar_Cartas(MazoValor_J1,MazoPalo_J1,VALOR);
+                cout << endl;
+                cout << Nombre_Jugador_1 << " ¿Desea modificar la carta embaucadora actual? (" << Embaucado << ")?" << "(S/N):";
+                cin >> confirmacion;
+                confirmacion = toupper(confirmacion);
+                cin.ignore(100,'\n');
+                while(confirmacion != 'S' && confirmacion != 'N')  ///SI NO ACEPTA EL JUGADOR 1, PRGUNTA DE CAMBIO DE CARTA EMBAUCADO AL JUGADOR 2
+                {
+                    cout << endl;
+                    cout << "ERROR solo se admite 'S' o 'N'" << endl;
+                    cout << endl;
+                    //rlutil::anykey();
+                    //rlutil::cls();
+                    cout << Nombre_Jugador_1 << " ¿Desea modificar la carta embaucadora actual? (" << Embaucado << ")?" << "(S/N):";
+                    cin >> confirmacion;
+                    confirmacion = toupper(confirmacion);
+                    cin.ignore(100,'\n');
+                }
+                if(confirmacion == 'S')
+                {
+                    Embaucado = CartaEmbaucadora(VecNaipePalo, PALO);
+                    cout << endl;
+                    cout << "Se retan 20 punto por el uso del cambio de carta embaucadora" << endl;
+                    Puntos_Ronda_J1[x] -= 20;
+                    cout << endl;
+                    cout << "Nueva carta Embaucadora: " << Embaucado << endl;
+                    //rlutil::anykey();
+                    //rlutil::cls();
+                }
+            }
+            cout << endl;
+            cout << "+---------------------------+" << endl;
+            cout << endl;
+            cout << "Puntajes obtenidos:" << endl;
+            cout << " ----------------------------------------------------" << endl;
+            cout << Nombre_Jugador_1 << ": ";
+            Puntos_Ronda_J1[x] = SumaPuntos(MazoValor_J1, MazoPalo_J1,Embaucado,VALOR);
+            cout << " = " << Puntos_Ronda_J1[x] << " puntos" <<endl;
+            cout << Nombre_Jugador_2 << ": ";
+            Puntos_Ronda_J2[x] = SumaPuntos(MazoValor_J2, MazoPalo_J2, Embaucado, VALOR);
+            cout << " = " << Puntos_Ronda_J2[x] << " puntos" <<endl;
+            rlutil::anykey();
+            rlutil::cls();
+
 
 
 
@@ -498,4 +601,14 @@ int SumaPuntos(string MazoValor_J[], string MazoPalo_J[], string CartaEmbaucado,
         }
     }
     return PuntajeRonda;
+}
+
+
+int SumaPuntos_Rondas(int Suma_Puntos_Rondas[], int Rondas,int  Puntos_Maximos_J);
+int SumaPuntos_Rondas(int Suma_Puntos_Rondas[], int Rondas, int Puntos_Maximos_J)
+{
+    for(int x = 0; x < Rondas; x ++)
+    {
+
+    }
 }
