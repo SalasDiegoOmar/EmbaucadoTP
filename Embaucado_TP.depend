@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1718303865 source:c:\users\laservd\desktop\embaucado\embaucado_tp\main.cpp
+1718340071 source:c:\users\laservd\desktop\embaucado\embaucado_tp\main.cpp
 	<iostream>
 	"funciones.h"
 	<cstdlib>
@@ -8,10 +8,10 @@
 	"rlutil.h"
 	<locale.h>
 
-1718299465 c:\users\laservd\desktop\embaucado\embaucado_tp\funciones.h
+1718349010 c:\users\laservd\desktop\embaucado\embaucado_tp\funciones.h
 	<string>
 
-1718332531 source:c:\users\laservd\desktop\embaucado\embaucado_tp\funciones.cpp
+1718363822 source:c:\users\laservd\desktop\embaucado\embaucado_tp\funciones.cpp
 	"funciones.h"
 	<cstdlib>
 	<ctime>

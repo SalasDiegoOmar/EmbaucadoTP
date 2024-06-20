@@ -10,17 +10,17 @@ using namespace std;
 int main()
 {
     setlocale(LC_CTYPE, "spanish");
-    //const int CARTAS = 10, VALOR = 5,PALO = 4, RONDA = 3;
-    //int VecRondaJuego[RONDA] = {1, 2, 3};
-    //string VecNaipeValor[VALOR] = {"10", "J", "Q", "K", "A"};
-    //string VecNaipePalo[PALO] = {"Corazones", "Diamantes", "Picas", "Treboles"};
-    //string BarajaValor[CARTAS];
-    //string BarajaPalo[CARTAS];
-    //string MazoValor_J1 [VALOR], MazoPalo_J1[VALOR];
-    //string MazoValor_J2[VALOR], MazoPalo_J2[VALOR];
-    //string Embaucado;
-    //string Nombre_Jugador_1, Nombre_Jugador_2;
-    //int Puntos_Ronda1_J1 = 0, Puntos_Ronda1_J2 = 0;
+    const int CARTAS = 10, VALOR = 5,PALO = 4, RONDA = 3;
+    int VecRondaJuego[RONDA] = {1, 2, 3};
+    string VecNaipeValor[VALOR] = {"10", "J", "Q", "K", "A"};
+    string VecNaipePalo[PALO] = {"Corazones", "Diamantes", "Picas", "Treboles"};
+    string BarajaValor[CARTAS];
+    string BarajaPalo[CARTAS];
+    string MazoValor_J1 [VALOR], MazoPalo_J1[VALOR];
+    string MazoValor_J2[VALOR], MazoPalo_J2[VALOR];
+    string Embaucado;
+    string Nombre_Jugador_1, Nombre_Jugador_2;
+    int Puntos_Ronda1_J1 = 0, Puntos_Ronda1_J2 = 0;
     int Opcion_Menu;
 
 

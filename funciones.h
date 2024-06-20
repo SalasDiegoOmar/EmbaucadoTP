@@ -19,3 +19,5 @@ int Menu();
 void Creditos();
 
 void Jugar();
+
+int SumaPuntos(string MazoValor_J[], string MazoPalo_J[], string CartaEmbaucado, int VALOR);
